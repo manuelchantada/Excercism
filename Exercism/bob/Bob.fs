@@ -1,24 +1,24 @@
 ﻿module Bob
 
 let response (input: string): string =  
-    let isQuestion (s: string) = 
-        s.TrimEnd().EndsWith("?")
+    let (|Question|_|) (s: string) = 
+        if s.TrimEnd().EndsWith("?") then Some(Question )
+        else None
 
-    let isShouting (s: string) =
-        s.ToUpper() = s && s.ToLower() <> s
+    let (|Shouting|_|) (s: string) =
+        if (s.ToUpper() = s && s.ToLower() <> s ) then Some(Shouting)
+        else None
     
-    let isExclaming (s: string) =      
-        s.EndsWith("!")
+    let (|Exclaming|_|) (s: string) =      
+        if s.EndsWith("!") then Some(Exclaming) 
+        else None
 
-    let isSilence (s: string) =
-        s.Trim() = ""
-
-    match input with
-    |_ when isQuestion(input) & isShouting(input) -> "Calm down, I know what I'm doing!"
-    |_ when isQuestion(input) -> "Sure."
-    |_ when isShouting(input) -> "Whoa, chill out!"
-    |_ when isExclaming(input) -> "Whatever."
-    |_ when isSilence(input) -> "Fine. Be that way!"
-    |_ -> "Whatever."
+    match input.Trim() with
+    | Question & Shouting -> "Calm down, I know what I'm doing!"
+    | Question -> "Sure."
+    | Shouting -> "Whoa, chill out!"
+    | Exclaming -> "Whatever."
+    | "" -> "Fine. Be that way!"
+    | _ -> "Whatever."
     
 
