@@ -13,6 +13,7 @@ let response (input: string): string =
         if s.EndsWith("!") then Some(Exclaming) 
         else None
 
+
     match input.Trim() with
     | Question & Shouting -> "Calm down, I know what I'm doing!"
     | Question -> "Sure."
