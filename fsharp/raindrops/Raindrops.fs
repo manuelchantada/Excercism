@@ -1,20 +1,20 @@
 ﻿module Raindrops
 
+let specialCases = [(3, "Pling"); (5, "Plang"); (7, "Plong")] 
 
 
-let convert (number: int): string =    
-    let makeSound(div, sound) =
-        match number with
-        | i when i % div = 0 ->  sound
-        | _ -> ""
+let convert (number: int) =    
+    let makeSound (div, sound) =
+        if number % div = 0 then sound
+        else ""      
 
-    let msg = [(3, "Pling"); (5, "Plang"); (7, "Plong")] 
-            |> List.map makeSound 
-            |> List.fold(+) "" 
-
-    match msg with
-    | "" -> string number
-    | _ -> msg
+    specialCases
+        |> List.map makeSound             
+        |> String.concat ""
+        |> function 
+            | "" -> string number
+            | x -> x
+    
    
 
 
