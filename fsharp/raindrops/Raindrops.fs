@@ -9,11 +9,11 @@ let convert (number: int) =
         else ""      
 
     specialCases
-        |> List.map makeSound             
-        |> String.concat ""
-        |> function 
-            | "" -> string number
-            | x -> x
+    |> List.map makeSound             
+    |> String.concat ""
+    |> function 
+        | "" -> string number
+        | x -> x
     
    
 
